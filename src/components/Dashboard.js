@@ -2,6 +2,9 @@
 import React from 'react'; 
 import { useNavigate} from 'react-router-dom'; // Import useHistory hook 
 
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom'
+
 function WelcomeDashboard({ username }) { 
 	const history = useNavigate(); 
 
@@ -12,16 +15,21 @@ function WelcomeDashboard({ username }) {
 	}; 
 
 	return ( 
-		<div className="h-screen  bg-pink-600 flex justify-center"> 
-			<div className=" p-4" > 
-				<h2 className="mb-4 text-center">Welcome to Dashboard</h2> 
-				<p className="mb-4 text-center">Hello, {username}!</p> 
-				<p className="text-center">You are logged in successfully.</p> 
-				<div className="text-center"> 
-					<button type="button" className="btn btn-primary mt-3" onClick={handleLogout}>Logout</button> 
-				</div> 
-			</div> 
-		</div> 
+		<div className="h-screen custom-background flex justify-center  px-4">
+  <div className="max-w-screen-lg p-4">
+    <h2 className=" mt-20 mb-4 text-center font-Fredoka text-4xl">HITTA SKOPAN</h2>
+    
+    <div className='flex justify-center mt-32 space-x-4 '>
+	<Link to="/skopa-hittad">
+	<Button variant="contained">Skopa hittad!</Button>
+		 </Link>
+      
+      <Button variant="contained">Skopor i närheten</Button>
+    </div>
+    
+  </div>
+</div>
+
 	); 
 } 
 

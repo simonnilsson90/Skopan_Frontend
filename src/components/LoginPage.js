@@ -10,7 +10,6 @@ function LoginPage() {
 	const history = useNavigate(); 
 
 	
-
 	const handleLogin = async () => {
 		try {
 			if (!username || !password) {
@@ -18,11 +17,27 @@ function LoginPage() {
 				return;
 			}
 	
-			const response = await axios.post('http://localhost:8081/auth/signin', { username, password });
+			// Prepare login data
+			const loginData = {
+				email: username, // Updated to 'email'
+				password,
+			};
+	
+			const response = await axios.post('http://localhost:8081/auth/signin', loginData);
 			console.log('Login successful:', response.data);
 	
-			// Save JWT token to localStorage
-			localStorage.setItem('authToken', response.data.token); // Adjust according to your token structure
+			if (response.data.jwt) { // Updated to check for 'jwt'
+				// Save JWT token to localStorage (or sessionStorage)
+				localStorage.setItem('authToken', response.data.jwt);
+	
+				// Include the token in Authorization header for subsequent requests
+				const token = localStorage.getItem('authToken');
+				axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+			} else {
+				setError('Invalid token received.'); // Handle missing token case
+				return;
+			}
+	
 			history('/dashboard');
 		} catch (error) {
 			console.error('Login failed:', error.response ? error.response.data : error.message);
@@ -30,18 +45,19 @@ function LoginPage() {
 		}
 	};
 	
+	
 
 	return ( 
-		<div className=" h-screen  bg-pink-600 flex justify-center"> 
+		<div className=" h-screen  custom-background flex justify-center"> 
 			
 				<div className=" flex flex-col "> 
-					<h2 className="mb-4 text-center   ">Login </h2> 
-					<input className=' mb-4 pl-2 '  placeholder='Email address' id='email' value={username} type='email' onChange={(e) => setUsername(e.target.value)} /> 
-					<input className=' pl-2'  placeholder='Password' id='password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} /> 
+					<h2 className="mb-4 text-center mt-56   ">Logga in </h2> 
+					<input className=' mb-4 pl-2 '  placeholder='Email-address' id='username' value={username} type='email' onChange={(e) => setUsername(e.target.value)} /> 
+					<input className=' pl-2'  placeholder='Lösenord' id='password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} /> 
 					{error && <p className="">{error}</p>} {/* Render error message if exists */} 
-					<button className="mb-4 d-block btn-primary" style={{ height:'50px',width: '100%' }} onClick={handleLogin}>Sign in</button> 
+					<button className="text-slate-100 text-2xl mt-2 rounded-md mb-4 d-block mx-auto fixed-action-btn btn-primary bg-blue-800" style={{ height:'50px',width: '100%' }} onClick={handleLogin}>Sign in</button> 
 					<div className="text-center"> 
-						<p>Not a member? <a href="/signup" >Register</a></p> 
+						<p>Inte medlem? <a href="/signup" >Registrera</a></p> 
 					</div> 
 				</div> 
 			

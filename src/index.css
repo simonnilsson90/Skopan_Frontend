@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +14,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.custom-background {
+  background-image: url('/public/bild.jpeg');
+  background-position: bottom;
+  background-size: cover;
+}
+
+.font-Fredoka {
+  font-family: 'Fredoka One', sans-serif;
+}
+
+.transparent-app-bar {
+  background-color: transparent !important;
+  box-shadow: none !important; /* Ta bort skugga */
+}
+
