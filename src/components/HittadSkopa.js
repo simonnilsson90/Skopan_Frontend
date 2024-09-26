@@ -15,7 +15,7 @@ function HittadSkopa (){
         <div className="h-screen bg-blue-300 flex justify-center  px-8 font-Fredoka ">
 
             <div className="max-w-screen-lg p-4">
-            <h1 className=' mt-20 text-4xl text-center '>SKOPA UPPTÄCKT!</h1>
+            <h1 className=' mt-20 text-4xl text-center '>SKOPA UPPTÄCKT !</h1>
 
       <div className=" text-center">
       <ul className="list-disc mt-20 justify-center">
