@@ -4,12 +4,14 @@ import MenuAppBar from '../components/MenuAppBar';
 import { Outlet } from "react-router-dom";
 import ScrollToTop from '../components/ScrollToTop';
 
+// 
+
 function RootLayout() {
   return (
  
-    <div className="">
+    <div className=" bg-black">
         <ScrollToTop />
-      <MenuAppBar />
+            <MenuAppBar />
 
       <main className="">
         <Outlet />

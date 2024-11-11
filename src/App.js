@@ -13,37 +13,27 @@ function App() {
   return ( 
     <div className="App"> 
       <Router> 
-        <Routes> 
-          {/* Routes that include the RootLayout with MenuAppBar */}
-          <Route path="/" element={<NoNavbarLayout />}> {/* No navbar for login/signup */}
-            <Route index element={<LoginPage />} /> {/* LoginPage without navbar */}
-            <Route path="signup" element={<SignupPage />} /> {/* SignupPage without navbar */}
-          </Route>
+      <Routes> 
+  {/* Routes utan navbar */}
+  <Route path="/" element={<NoNavbarLayout />}>
+    <Route index element={<LoginPage />} />
+    <Route path="signup" element={<SignupPage />} />
+  </Route>
 
-          <Route path="/" element={<RootLayout />}> {/* Layout with navbar */}
-            <Route 
-              path="/dashboard" 
-            
-              element={
-                <ProtectedRoute>
-                  <Dashboard /> {/* Render dashboard inside ProtectedRoute */}
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/skopa-hittad" 
-            
-              element={
-                <ProtectedRoute>
-                  <HittadSkopa /> {/* Render hittadSkopa inside ProtectedRoute */}
-                </ProtectedRoute>
-              } 
-            />
-          </Route> 
+  {/* Routes med navbar (RootLayout) */}
+  <Route path="/" element={<RootLayout />}>
+    <Route 
+      path="/dashboard" 
+      element={
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } 
+    />
+    <Route path="/skopa-hittad" element={<HittadSkopa />} /> {/* Flyttad hit */}
+  </Route> 
+</Routes>
 
-          
-
-        </Routes> 
       </Router> 
     </div> 
   ); 

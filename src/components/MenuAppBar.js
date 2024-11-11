@@ -40,7 +40,8 @@ export default function MenuAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
   
-      <AppBar position="static"  sx={{  zIndex: 1 }}>
+  <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none', zIndex: 1 }}>
+
 
 
         <Toolbar>
